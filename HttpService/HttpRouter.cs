@@ -96,9 +96,14 @@ namespace HttpService
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
 
+            if(HttpServer.Instance.ServeStaticFile(request?.Url?.AbsolutePath!, response))
+            {
+                return;
+            }
+
             string key = "";
 
-            string[] bits = (request.HttpMethod + request?.Url?.AbsolutePath).Split("/", StringSplitOptions.RemoveEmptyEntries);
+            string[] bits = (request?.HttpMethod + request?.Url?.AbsolutePath).Split("/", StringSplitOptions.RemoveEmptyEntries);
 
             // Find Matching route
             foreach(string route in events.Keys)

@@ -2,12 +2,32 @@
 
 var s = HttpService.HttpServer.Instance;
 
+// Start listening to localhost on port 8080
 s.ListenTo("http://localhost:8080/");
 s.Start();
 
+// Force web server to check for static files in the public directory
+s.StaticFileDirectory += "\\public";
+
 s.Route(route:"/", callback:(s,e) =>
 {
-    e.HtmlResponse("<h1>Hello World</h1>");
+    string html =
+    @"<!DOCTYPE>
+        <html>
+            <head>
+                <title>HttpServiceDemo</title>
+                <link rel='icon' type='image/ico' href='ico/favicon.ico' />
+            </head>
+            <body>
+                <h1>Hello World</h1>
+                <h2>Static File Demo</h2>
+                <img src='/img/GrafxKid_CC0.png' />
+                <br>
+                <a href='https://opengameart.org/content/platformer-baddies'>[Platformer Baddies] by [GrafxKid] licenced under [CC0] [2015]</a>
+            </body>
+        </html>
+    ";
+    e.HtmlResponse(html);
 });
 
 s.Route(route: "/api/client/{ClientId}/item/{ItemId}/", callback: (s, e) =>

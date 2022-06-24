@@ -3,7 +3,7 @@ using System.Text;
 
 namespace HttpService
 {
-    public class HttpServer
+    public partial class HttpServer
     {
         // Singleton
         private static readonly Lazy<HttpServer> instance = new Lazy<HttpServer>(() => new HttpServer());

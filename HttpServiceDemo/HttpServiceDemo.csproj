@@ -11,4 +11,18 @@
     <ProjectReference Include="..\HttpService\HttpService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="public\ico\" />
+    <Folder Include="public\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="public\ico\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="public\img\GrafxKid_CC0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

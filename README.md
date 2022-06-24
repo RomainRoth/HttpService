@@ -28,6 +28,6 @@ Add a reverse proxy such as Apache or NGINX in front to add SSL and you're good 
 
 - [x] Http Server
 - [x] Routing
-- [ ] Static Files
+- [x] Static Files
 - [ ] Json Helper
 - [ ] Template Engine
