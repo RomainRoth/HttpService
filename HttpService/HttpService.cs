@@ -12,6 +12,9 @@ namespace HttpService
         // Port Listener
         private HttpListener httpListener = new HttpListener();
 
+        // Was the service killed ?
+        private bool forceQuit = false;
+
         /// <summary>
         /// Initialisation
         /// </summary>
@@ -41,8 +44,26 @@ namespace HttpService
         private void BackgroundThread()
         {
             Task listenTask = HandleIncomingConnections();
-            listenTask.GetAwaiter().GetResult();
-            httpListener.Close();
+            try
+            {
+                listenTask.GetAwaiter().GetResult();
+                httpListener.Close();
+            }catch(Exception)
+            {
+                if(!forceQuit)
+                {
+                    throw;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Stop the service through force
+        /// </summary>
+        public void Kill()
+        {
+            forceQuit = true;
         }
 
         private async Task HandleIncomingConnections()
